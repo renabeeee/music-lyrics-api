@@ -13,4 +13,20 @@ class LyricsController < ApplicationController
     lyric = Lyric.all
     render json: Lyric.all
   end
+
+  def index
+    @lyric = Lyric.all
+    render :index
+  end
+
+  def create
+    @lyric = Lyric.create(
+    title: params["title"],
+    artist: params["artist"],
+    bpm: params["bpm"],
+    duration: params["duration"],
+    )
+
+    render :show
+  end
 end
