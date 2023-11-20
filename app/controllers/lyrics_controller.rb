@@ -29,4 +29,23 @@ class LyricsController < ApplicationController
 
     render :show
   end
+
+  # def search_id
+  #   @lyric = Lyric.find_by(id: params["id"])
+
+  #   render template: "lyrics/show"
+  # end
+
+  def update
+    @lyric = Lyric.find_by(id: params["id"])
+
+    @lyric.update(
+      title: params["title"] || @lyric.title,
+      artist: params["artist"] || @lyric.artist,
+      bpm: params["bpm"] || @lyric.bpm,
+      duration: params["duration"] || @lyric.duration
+    )
+    render :show
+  end
+
 end
