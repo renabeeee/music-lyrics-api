@@ -30,11 +30,11 @@ class LyricsController < ApplicationController
     render :show
   end
 
-  # def search_id
-  #   @lyric = Lyric.find_by(id: params["id"])
+  def search_id
+    @lyric = Lyric.find_by(id: params["id"])
 
-  #   render template: "lyrics/show"
-  # end
+    render template: "lyrics/show"
+  end
 
   def update
     @lyric = Lyric.find_by(id: params["id"])
@@ -48,4 +48,10 @@ class LyricsController < ApplicationController
     render :show
   end
 
+  def destroy
+    @lyric = Lyric.find_by(id: params["id"])
+    @lyric.destroy
+
+    render json: {message: "lyric gone!"}
+  end
 end
