@@ -59,10 +59,17 @@ function Content() {
   let lyrics = [];
 
   const handleIndexLyrics = () => {
-    axios.get("http://localhost:3000/all-lyrics.json").then((response) => {
-      console.log(response.data);
-      lyrics = response.data;
-    }); // Semicolon added here
+    axios
+      .get("http://localhost:3000/all-lyrics.json", {
+        auth: {
+          email: "serena@test.com", // Replace with actual credentials
+          password: "password", // Replace with actual credentials
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        lyrics = response.data;
+      });
   };
 
   return (
