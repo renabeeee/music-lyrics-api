@@ -1,13 +1,18 @@
 html {
   scroll-behavior: smooth;
-} */
+  max-width: 800px;
+}
+
+.props {
+    max-width: 800px;
+}
 
 body {
   font-family: 'Roboto', sans-serif;
+
 }
 
 .app-container {
-  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   
@@ -26,6 +31,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 20px;
   margin-bottom: 80px;
+}
+
+.h2 {
+  max-width: 800px;
 }
 
 .form {
@@ -54,7 +63,7 @@ body {
   margin-bottom: 40px;
 }
 
-.track-image {
+.lyrics {
   width: 100%;
   height: auto;
   margin-bottom: 20px;

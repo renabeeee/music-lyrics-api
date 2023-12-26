@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post "/new-lyrics" => "lyrics#create"
   patch "/lyrics/:id.json" => "lyrics#update", as: :update_lyric
   delete "/lyrics/:id.json" => "lyrics#destroy", as: :destroy_lyric
+  post "/sessions" => "sessions#create"
 end

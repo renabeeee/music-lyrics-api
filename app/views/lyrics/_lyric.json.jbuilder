@@ -7,5 +7,6 @@ json.artist lyric.artist
 json.bpm lyric.bpm
 json.artist lyric.artist
 json.duration lyric.duration
+json.image_url lyric.image_url
 json.created_at lyric.created_at
 json.updated_at lyric.updated_at
