@@ -24,7 +24,7 @@ class LyricsController < ApplicationController
     title: params["title"],
     artist: params["artist"],
     bpm: params["bpm"],
-    duration: params["duration"],
+    duration: params["duration"],    image_url: params["image_url"]
     )
 
     render :show
@@ -43,7 +43,8 @@ class LyricsController < ApplicationController
       title: params["title"] || @lyric.title,
       artist: params["artist"] || @lyric.artist,
       bpm: params["bpm"] || @lyric.bpm,
-      duration: params["duration"] || @lyric.duration
+      duration: params["duration"] || @lyric.duration,
+      image_url: params["image_url"]
     )
     render :show
   end

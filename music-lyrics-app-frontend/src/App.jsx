@@ -1,4 +1,5 @@
 import "./App.css";
+import axios from "axios";
 
 function Header() {
   return (
@@ -36,38 +37,39 @@ function LyricsNew() {
   );
 }
 
-function LyricsIndex() {
+function LyricsIndex(props) {
+  console.log(props);
   return (
     <div id="lyrics-index" className="content-section">
       <h1>All tracks</h1>
 
-      <div className="track-card">
-        <h2>Destiny's Child</h2>
-        <img
-          src="https://i.scdn.co/image/ab6761610000e5ebf75e64532704bd6acf0b4e76"
-          alt=""
-          className="track-image"
-        />
-        <button className="info-button">See more info</button>
-      </div>
-      <div className="track-card">
-        <h2>JB</h2>
-        <img
-          src="https://imageio.forbes.com/specials-images/imageserve/63d0095c7f394c0690922d82/Justin-Bieber-performs-on-day-three-of-Sziget-Festival-2022-on--budai-sziget-Island/0x0.jpg?crop=1617,910,x0,y80,safe&height=400&width=711&fit=bounds"
-          alt=""
-          className="track-image"
-        />
-        <button className="info-button">See more info</button>
-      </div>
+      {props.lyrics.map((lyric) => (
+        <div key={lyric.id} className="lyrics">
+          <h2>{lyric.title}</h2>
+          <img src={lyric.image_url} alt={lyric.title} />
+          <p>Artist: {lyric.artist}</p>
+          <button className="info-button">See more info</button>
+        </div>
+      ))}
     </div>
   );
 }
 
 function Content() {
+  let lyrics = [];
+
+  const handleIndexLyrics = () => {
+    axios.get("http://localhost:3000/all-lyrics.json").then((response) => {
+      console.log(response.data);
+      lyrics = response.data;
+    }); // Semicolon added here
+  };
+
   return (
     <div>
       <LyricsNew />
-      <LyricsIndex />
+      <button onClick={handleIndexLyrics}>Load Lyrics</button>
+      <LyricsIndex lyrics={lyrics} />
     </div>
   );
 }
