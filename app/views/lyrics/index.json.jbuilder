@@ -1,1 +1,1 @@
-json.array! @lyric, partial: "lyrics/lyric", as: :lyric
+json.array! @lyrics, partial: "lyrics/lyric", as: :lyric
