@@ -7,6 +7,7 @@ import { Modal } from "./Modal";
 export function Content() {
   // let lyrics = [];
   const [lyrics, setLyrics] = useState([]);
+  const [isLyricsShowVisible, setIsLyricsShowVisible] = useState(false);
 
   const handleIndexLyrics = () => {
     axios
@@ -23,15 +24,22 @@ export function Content() {
       });
   };
 
+  const handleShowLyric = () => {
+    setIsLyricsShowVisible(true);
+  };
+
+  const handleCloseLyric = () => {
+    setIsLyricsShowVisible(false);
+  };
+
   useEffect(handleIndexLyrics, []);
   // handleIndexLyrics(); this causes an infinite loop - you can see it in the console if this and the handleIndexLyrics button is active because React it built this way
   return (
     <div>
       <LyricsNew />
       {/* <button onClick={handleIndexLyrics}>Load Lyrics</button> not user friendly */}
-      <LyricsIndex lyrics={lyrics} />
-      <Modal show={true}>
-        {" "}
+      <LyricsIndex lyrics={lyrics} onShowLyric={handleShowLyric} />
+      <Modal show={isLyricsShowVisible} onClose={handleCloseLyric}>
         <p>Test</p>
       </Modal>
     </div>
