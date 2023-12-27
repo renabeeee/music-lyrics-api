@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { LyricsNew } from "./LyricsNew";
 import { LyricsIndex } from "./LyricsIndex";
+import { Modal } from "./Modal";
 
 export function Content() {
   // let lyrics = [];
@@ -29,6 +30,10 @@ export function Content() {
       <LyricsNew />
       {/* <button onClick={handleIndexLyrics}>Load Lyrics</button> not user friendly */}
       <LyricsIndex lyrics={lyrics} />
+      <Modal show={true}>
+        {" "}
+        <p>Test</p>
+      </Modal>
     </div>
   );
 }
