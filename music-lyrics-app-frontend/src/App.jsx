@@ -1,5 +1,6 @@
 import "./App.css";
 import axios from "axios";
+import { useState } from "react";
 
 function Header() {
   return (
@@ -46,7 +47,11 @@ function LyricsIndex(props) {
       {props.lyrics.map((lyric) => (
         <div key={lyric.id} className="lyrics">
           <h2>{lyric.title}</h2>
-          <img src={lyric.image_url} alt={lyric.title} />
+          <img
+            src={lyric.image_url}
+            alt={lyric.title}
+            className="lyrics-image"
+          />
           <p>Artist: {lyric.artist}</p>
           <button className="info-button">See more info</button>
         </div>
@@ -56,7 +61,8 @@ function LyricsIndex(props) {
 }
 
 function Content() {
-  let lyrics = [];
+  // let lyrics = [];
+  const [lyrics, setLyrics] = useState([]);
 
   const handleIndexLyrics = () => {
     axios
@@ -68,7 +74,8 @@ function Content() {
       })
       .then((response) => {
         console.log(response.data);
-        lyrics = response.data;
+        // lyrics = response.data;
+        setLyrics(response.data);
       });
   };
 
