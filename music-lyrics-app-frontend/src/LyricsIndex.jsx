@@ -13,7 +13,10 @@ export function LyricsIndex(props) {
             className="lyrics-image"
           />
           <p>Artist: {lyric.artist}</p>
-          <button onClick={props.onShowLyric} className="info-button">
+          <button
+            onClick={() => props.onShowLyric(lyric)}
+            className="info-button"
+          >
             See more info
           </button>
         </div>

@@ -8,6 +8,7 @@ export function Content() {
   // let lyrics = [];
   const [lyrics, setLyrics] = useState([]);
   const [isLyricsShowVisible, setIsLyricsShowVisible] = useState(false);
+  const [currentLyric, setCurrentLyric] = useState({});
 
   const handleIndexLyrics = () => {
     axios
@@ -24,8 +25,9 @@ export function Content() {
       });
   };
 
-  const handleShowLyric = () => {
+  const handleShowLyric = (lyric) => {
     setIsLyricsShowVisible(true);
+    setCurrentLyric(lyric);
   };
 
   const handleCloseLyric = () => {
@@ -37,10 +39,13 @@ export function Content() {
   return (
     <div>
       <LyricsNew />
-      {/* <button onClick={handleIndexLyrics}>Load Lyrics</button> not user friendly */}
       <LyricsIndex lyrics={lyrics} onShowLyric={handleShowLyric} />
       <Modal show={isLyricsShowVisible} onClose={handleCloseLyric}>
-        <p>Test</p>
+        <h2>
+          {currentLyric.title} by {currentLyric.artist}
+        </h2>
+        <p>Duration: {currentLyric.duration} minutes</p>
+        <p>BPM: {currentLyric.bpm}</p>
       </Modal>
     </div>
   );
