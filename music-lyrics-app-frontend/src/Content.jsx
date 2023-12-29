@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { LyricsNew } from "./LyricsNew";
 import { LyricsIndex } from "./LyricsIndex";
 import { Modal } from "./Modal";
+import { LyricsShow } from "./LyricsShow";
+import { Signup } from "./Signup";
 
 export function Content() {
   // let lyrics = [];
@@ -37,15 +39,13 @@ export function Content() {
   useEffect(handleIndexLyrics, []);
   // handleIndexLyrics(); this causes an infinite loop - you can see it in the console if this and the handleIndexLyrics button is active because React it built this way
   return (
-    <div>
+    <div className="container" id="content-component">
+      <Signup />
+
       <LyricsNew />
       <LyricsIndex lyrics={lyrics} onShowLyric={handleShowLyric} />
       <Modal show={isLyricsShowVisible} onClose={handleCloseLyric}>
-        <h2>
-          {currentLyric.title} by {currentLyric.artist}
-        </h2>
-        <p>Duration: {currentLyric.duration} minutes</p>
-        <p>BPM: {currentLyric.bpm}</p>
+        <LyricsShow lyric={currentLyric} />
       </Modal>
     </div>
   );
