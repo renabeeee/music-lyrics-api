@@ -7,10 +7,10 @@ export function Signup() {
           Name: <input type="text" />
         </div>
         <div>
-          Email: <input type="text" />
+          Email: <input type="email" />
         </div>
         <div>
-          Password: <input type="text" />
+          Password: <input type="password" />
         </div>
         <div>
           Password Confirmation: <input type="text" />
