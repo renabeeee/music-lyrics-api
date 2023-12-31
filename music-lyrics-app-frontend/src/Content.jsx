@@ -41,7 +41,6 @@ export function Content() {
   return (
     <div className="container" id="content-component">
       <Signup />
-
       <LyricsNew />
       <LyricsIndex lyrics={lyrics} onShowLyric={handleShowLyric} />
       <Modal show={isLyricsShowVisible} onClose={handleCloseLyric}>
