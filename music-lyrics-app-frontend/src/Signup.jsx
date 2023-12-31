@@ -1,24 +1,35 @@
 import axios from "axios";
+import { useState } from "react";
 
 export function Signup() {
+  const [errors, setErrors] = useState([]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("handleSubmit");
+    setErrors([]);
     const params = new FormData(event.target);
     axios
       .post("http://localhost:3000/users.json", params)
       .then((response) => {
         console.log(response.data);
         event.target.reset();
+        window.location.href = "/";
       })
       .catch((error) => {
         console.log(error.response.data.errors);
+        setErrors(error.response.data.errors);
       });
   };
 
   return (
     <div id="signup">
       <h1>Sign up!</h1>
+      <ul>
+        {errors.map((error) => (
+          <li key={error}>{error}</li>
+        ))}
+      </ul>
+
       <form onSubmit={handleSubmit}>
         <div>
           Name: <input name="name" type="text" />
@@ -33,7 +44,7 @@ export function Signup() {
           Password Confirmation:{" "}
           <input name="password_confirmation" type="password" />
         </div>
-        <button type="submit"> Sign up!</button>
+        <button type="submit"> Sign up</button>
       </form>
     </div>
   );
