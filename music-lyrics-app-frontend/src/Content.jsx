@@ -5,6 +5,8 @@ import { LyricsIndex } from "./LyricsIndex";
 import { Modal } from "./Modal";
 import { LyricsShow } from "./LyricsShow";
 import { Signup } from "./Signup";
+import { Login } from "./Login";
+import { LogoutLink } from "./LogoutLink";
 
 export function Content() {
   // let lyrics = [];
@@ -41,6 +43,8 @@ export function Content() {
   return (
     <div className="container" id="content-component">
       <Signup />
+      <Login />
+      <LogoutLink />
       <LyricsNew />
       <LyricsIndex lyrics={lyrics} onShowLyric={handleShowLyric} />
       <Modal show={isLyricsShowVisible} onClose={handleCloseLyric}>
