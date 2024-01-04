@@ -23,24 +23,29 @@ class LyricsController < ApplicationController
   end
 
   def create
-    if current_user && current_user.admin
-
+    # if current_user
     @lyric = Lyric.create(
+
     title: params[:title],
     artist: params[:artist],
     bpm: params[:bpm],
     duration: params[:duration],    image_url: params[:image_url]
     )
 
-    if @lyric.save #happy path
-    render :show
-  else #sad path
-    render json: { errors: @lyric.errors.full_messages}, status: :unprocessable_entity
+    # if @lyric.save #happy path
+    if @lyric.save
+      render json: { message: "Lyric created successfully"}
+    else
+      render json: { errors: @lyric.errors.full_messages }, status: :bad_request
     end
-  else
-    render json: { message: "Please login." }, status: :unauthorized
+
+  # else #sad path
+  #   render json: { errors: @lyric.errors.full_messages}, status: :unprocessable_entity
+  #   end
+  # else
+  #   render json: { message: "Please login." }, status: :unauthorized
   end
-end
+
 
   def search_id
     @lyric = Lyric.find_by(id: params["id"])

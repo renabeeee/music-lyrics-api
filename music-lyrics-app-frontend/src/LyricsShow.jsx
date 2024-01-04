@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 export function LyricsShow(props) {
   return (
-    <div id="lyrics-show">
-      <h1>Lyric Information</h1>
-      <h2>
+    <div id="lyrics-show" className="show_text">
+      <p>Lyric Information</p>
+      <p>
         {props.lyric.title} by {props.lyric.artist}
-      </h2>
+      </p>
       <p>Duration: {props.lyric.duration} minutes</p>
       <p>BPM: {props.lyric.bpm}</p>
     </div>

@@ -30,6 +30,7 @@ export function Content() {
   };
 
   const handleShowLyric = (lyric) => {
+    console.log(lyric);
     setIsLyricsShowVisible(true);
     setCurrentLyric(lyric);
   };
