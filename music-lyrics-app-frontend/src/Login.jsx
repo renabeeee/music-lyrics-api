@@ -30,7 +30,7 @@ export function Login() {
   };
 
   return (
-    <div id="login">
+    <div id="login" className="content-section">
       <h1>Login</h1>
       <ul>
         {errors.map((error) => (
@@ -38,10 +38,10 @@ export function Login() {
         ))}
       </ul>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-field">
           Email: <input name="email" type="email" />
         </div>
-        <div>
+        <div className="form-field">
           Password: <input name="password" type="password" />
         </div>
         <button type="submit">Login</button>

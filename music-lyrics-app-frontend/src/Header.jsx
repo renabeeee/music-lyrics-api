@@ -2,7 +2,7 @@ export function Header() {
   return (
     <div className="app-container">
       <header className="header">
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar" style={{ backgroundColor: "#e3f2fd" }}>
           <div className="container-fluid">
             <a className="navbar-brand" href="#">
               Navbar
@@ -84,8 +84,10 @@ export function Header() {
             </div>
           </div>
         </nav>
-        {/* <a href="#">Home</a> | <a href="#lyrics-index">All tracks</a> |{" "}
-        <a href="#lyrics-new">New track</a> */}
+        <div className="links">
+          <a href="#">Home</a> | <a href="#lyrics-index">All tracks</a> |{" "}
+          <a href="#lyrics-new">New track</a>
+        </div>
       </header>
     </div>
   );
