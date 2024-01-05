@@ -32,6 +32,34 @@ export function Content() {
       });
   };
 
+  const handleUpdateLyric = (id, params) => {
+    axios
+      .patch("http://localhost:3000/lyrics/" + id + ".json", params)
+      .then((response) => {
+        console.log(response.data);
+        setLyrics(
+          lyrics.map((lyric) => {
+            if (lyric.id === response.data.id) {
+              return response.data;
+            } else {
+              return lyric;
+            }
+          })
+        );
+      })
+      .then(handleCloseLyric);
+  };
+
+  const handleDestroyLyric = (lyric) => {
+    axios
+      .delete("http://localhost:3000/lyrics/" + lyric.id + ".json")
+      .then((response) => {
+        console.log(response.data);
+        setLyrics(lyrics.filter((lyric) => lyric.id !== lyric.id));
+        handleCloseLyric();
+      });
+  };
+
   const handleShowLyric = (lyric) => {
     console.log(lyric);
     setIsLyricsShowVisible(true);
@@ -52,7 +80,11 @@ export function Content() {
       <Login />
       <LogoutLink />
       <Modal show={isLyricsShowVisible} onClose={handleCloseLyric}>
-        <LyricsShow lyric={currentLyric} />
+        <LyricsShow
+          lyric={currentLyric}
+          onUpdateLyric={handleUpdateLyric}
+          onDestroyLyric={handleDestroyLyric}
+        />
       </Modal>
     </div>
   );
