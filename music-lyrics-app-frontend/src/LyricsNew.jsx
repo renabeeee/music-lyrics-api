@@ -1,55 +1,22 @@
-import axios from "axios";
-import { useState } from "react";
+// import axios from "axios";
+// import { useState } from "react";
 
-export function LyricsNew() {
-  const [errors, setErrors] = useState([]);
-
+export function LyricsNew(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
-    setErrors([]); // Clear any previous errors
-
-    console.log("handleSubmit");
 
     const params = new FormData(event.target);
-
-    axios
-      .post("http://localhost:3000/new-lyrics.json", params, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        event.target.reset(); // Clear form fields
-        window.location.href = "/"; // Redirect to home page
-      })
-      .catch((error) => {
-        // Handle errors gracefully
-        console.error("Axios error:", error);
-
-        if (error.response && error.response.data.errors) {
-          // Server-side validation errors
-          setErrors(error.response.data.errors);
-        } else {
-          // Generic error message
-          setErrors([
-            "An error occurred while submitting the form. Please try again.",
-          ]);
-        }
-      });
+    props.onCreateLyrics(params);
+    event.target.reset();
   };
 
   return (
     <div id="lyrics-new" className="content-section">
       <h1>New track</h1>
-      <ul>
-        {errors.map((error) => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
+
       <form
-        method="POST"
-        action="http://localhost:3000/new-lyrics.json"
+        // method="POST"
+        // action="http://localhost:3000/new-lyrics.json"
         onSubmit={handleSubmit}
       >
         <div className="form-field">

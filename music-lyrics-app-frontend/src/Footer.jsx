@@ -1,11 +1,9 @@
-// import "./App.jsx";
+import "./App.jsx";
 
-// export function Footer() {
-//   return (
-//     <footer>
-//       <p>Copyright 2022</p>
-//     </footer>
-//   );
-// }
-
-// export default App;
+export function Footer() {
+  return (
+    <footer>
+      <p>Copyright 2024</p>
+    </footer>
+  );
+}
