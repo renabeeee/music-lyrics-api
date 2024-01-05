@@ -1,6 +1,6 @@
 class LyricsController < ApplicationController
 
-  # before_action :authenticate_admin, except: [:index, :show]
+  before_action :authenticate_user, except: [:index, :show]
 
   def one_song
     lyric = Lyric.first
@@ -25,18 +25,19 @@ class LyricsController < ApplicationController
   def create
     # if current_user
     @lyric = Lyric.create(
-
     title: params[:title],
     artist: params[:artist],
     bpm: params[:bpm],
-    duration: params[:duration],    image_url: params[:image_url]
+    duration: params[:duration],
+    image_url: params[:image_url],
+    user_id: current_user.id
     )
 
-    # if @lyric.save #happy path
-    if @lyric.save
-      render json: { message: "Lyric created successfully"}
+    if @lyric.save #happy path
+      render :show
+      # json: { message: "Lyric created successfully"}
     else
-      render json: { errors: @lyric.errors.full_messages }, status: :bad_request
+      render json: { error: @lyric.errors.full_messages }, status: 422
     end
 
   # else #sad path
@@ -44,7 +45,8 @@ class LyricsController < ApplicationController
   #   end
   # else
   #   render json: { message: "Please login." }, status: :unauthorized
-  end
+  # end
+end
 
 
   def search_id

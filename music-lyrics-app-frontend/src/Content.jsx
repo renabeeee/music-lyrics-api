@@ -9,23 +9,26 @@ import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
 
 export function Content() {
-  // let lyrics = [];
   const [lyrics, setLyrics] = useState([]);
   const [isLyricsShowVisible, setIsLyricsShowVisible] = useState(false);
   const [currentLyric, setCurrentLyric] = useState({});
 
   const handleIndexLyrics = () => {
+    axios.get("http://localhost:3000/all-lyrics.json").then((response) => {
+      console.log(response.data);
+      setLyrics(response.data);
+    });
+  };
+
+  const handleCreateLyric = (params) => {
     axios
-      .get("http://localhost:3000/all-lyrics.json", {
-        auth: {
-          email: "serena@test.com", // Replace with actual credentials
-          password: "password", // Replace with actual credentials
-        },
-      })
+      .post("http://localhost:3000/new-lyrics.json", params)
       .then((response) => {
         console.log(response.data);
-        // lyrics = response.data;
-        setLyrics(response.data);
+        setLyrics([...lyrics, response.data]);
+      })
+      .catch((error) => {
+        console.log(error.response.data.error);
       });
   };
 
@@ -43,11 +46,11 @@ export function Content() {
   // handleIndexLyrics(); this causes an infinite loop - you can see it in the console if this and the handleIndexLyrics button is active because React it built this way
   return (
     <div className="container" id="content-component">
+      <LyricsNew onCreateLyrics={handleCreateLyric} />
+      <LyricsIndex lyrics={lyrics} onShowLyric={handleShowLyric} />
       <Signup />
       <Login />
       <LogoutLink />
-      <LyricsNew />
-      <LyricsIndex lyrics={lyrics} onShowLyric={handleShowLyric} />
       <Modal show={isLyricsShowVisible} onClose={handleCloseLyric}>
         <LyricsShow lyric={currentLyric} />
       </Modal>
