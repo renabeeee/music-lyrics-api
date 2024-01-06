@@ -8,6 +8,7 @@ export function LyricsNew(props) {
     const params = new FormData(event.target);
     props.onCreateLyrics(params);
     event.target.reset();
+    window.location.href = "/lyrics";
   };
 
   return (
