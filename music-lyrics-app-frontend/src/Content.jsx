@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { LyricsNew } from "./LyricsNew";
 import { About } from "./About";
-
 import { LyricsIndex } from "./LyricsIndex";
 import { Modal } from "./Modal";
 import { LyricsShow } from "./LyricsShow";
@@ -10,6 +9,7 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
 import { Routes, Route } from "react-router-dom";
+import { LyricsShowPage } from "./LyricsShowPage";
 
 export function Content() {
   const [lyrics, setLyrics] = useState([]);
@@ -94,9 +94,10 @@ export function Content() {
         <Route
           path="/"
           element={
-            <LyricsIndex recipes={lyrics} onShowRecipe={handleShowLyric} />
+            <LyricsIndex recipes={lyrics} onShowLyric={handleShowLyric} />
           }
         />
+        <Route path="/lyrics/:id" element={<LyricsShowPage />} />
       </Routes>
 
       {/* <Signup /> */}
