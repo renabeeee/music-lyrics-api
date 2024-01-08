@@ -19,9 +19,8 @@ function App() {
     <div>
       <BrowserRouter>
         <Header />
-        <div onClick={() => setFlashMessage(null)} className="text-center">
-          {flashMessage}
-        </div>
+        <div>{flashMessage}</div>
+        <div onClick={() => setFlashMessage(null)}>{flashMessage}</div>
         <Content />
         <Footer />
       </BrowserRouter>

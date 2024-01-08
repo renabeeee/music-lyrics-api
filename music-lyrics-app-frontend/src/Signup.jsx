@@ -14,6 +14,7 @@ export function Signup() {
       .then((response) => {
         console.log(response.data);
         event.target.reset();
+        localStorage.setItem("flashMessage", "User created!");
         window.location.href = "/";
       })
       .catch((error) => {
@@ -41,7 +42,7 @@ export function Signup() {
             type="text"
           />
         </div>
-        <small>{20 - name.length} 20 characters remaining</small>
+        <small>{20 - name.length} characters remaining</small>
         <div className="form-field">
           Email: <input name="email" type="email" />
         </div>
