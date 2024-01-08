@@ -13,7 +13,13 @@ export function LyricsIndex(props) {
         type="text"
         value={searchFilter}
         onChange={(event) => setSearchFilter(event.target.value)}
+        list="titles"
       />
+      <datalist id="titles">
+        {props.lyrics.map((lyric) => (
+          <option key={lyric.id} value={lyric.title} />
+        ))}
+      </datalist>
       <div className="row">
         {/* <div className="lyrics-container"> */}
 
