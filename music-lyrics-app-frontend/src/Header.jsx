@@ -20,10 +20,10 @@ export function Header() {
       </Modal>
 
       <div className="app-container">
-        <nav className="navbar" style={{ backgroundColor: "#e3f2fd" }}>
+        <nav className="navbar" style={{ backgroundColor: "#000000" }}>
           <div className="container-fluid">
             <a className="navbar-brand" href="#">
-              Navbar
+              Lyrics
             </a>
             <button
               className="navbar-toggler"
